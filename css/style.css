@@ -79,6 +79,7 @@ nav ul li a:hover {
     color: var(--secondary-color);
 }
 
+
 .mobile-menu-btn {
     display: none;
     background: none;
@@ -86,6 +87,47 @@ nav ul li a:hover {
     color: white;
     font-size: 1.5rem;
     cursor: pointer;
+}
+/* Tambahkan ini di bagian CSS Anda */
+
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        align-items: flex-start; /* Ini yang mengatur ke kiri */
+    }
+
+    #mainNav {
+        width: 100%;
+        display: none; /* Awalnya disembunyikan, akan ditoggle dengan JS */
+    }
+
+    #mainNav.active {
+        display: block;
+    }
+
+    nav ul {
+        flex-direction: column;
+        padding: 0;
+        width: 100%;
+    }
+
+    nav ul li {
+        margin: 0;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .mobile-menu-btn {
+        display: block;
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+    }
+
+    .logo {
+        padding-right: 50px; /* Memberi ruang untuk tombol menu */
+        width: 100%;
+    }
 }
 
 /* Hero Section */
