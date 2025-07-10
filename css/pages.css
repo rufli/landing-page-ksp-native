@@ -330,3 +330,98 @@
     margin: 0;
     line-height: 1.6;
 }
+/* css untuk select */
+/* Form Select Styling - untuk semua select */
+select#program,
+select#member,
+select#product {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: white;
+    color: #333;
+    cursor: pointer;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    appearance: none; /* Menghilangkan default arrow */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,9 12,15 18,9"></polyline></svg>');
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1rem;
+    padding-right: 2.5rem;
+}
+
+select#program:focus,
+select#member:focus,
+select#product:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+select#program:hover,
+select#member:hover,
+select#product:hover {
+    border-color: #3498db;
+}
+
+/* Styling untuk option */
+select#program option,
+select#member option,
+select#product option {
+    padding: 0.5rem;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+select#program option:first-child,
+select#member option:first-child,
+select#product option:first-child {
+    color: #999;
+    font-style: italic;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+    select#program,
+    select#member,
+    select#product {
+        font-size: 0.9rem;
+        padding: 0.6rem;
+        padding-right: 2rem;
+        background-size: 0.8rem;
+        background-position: right 0.6rem center;
+    }
+}
+
+/* Form group styling jika diperlukan */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+/* Required field indicator */
+.form-group label::after {
+    content: ' *';
+    color: #e74c3c;
+}
+
+/* Error state */
+select#program:invalid,
+select#member:invalid,
+select#product:invalid {
+    border-color: #e74c3c;
+}
+
+select#program:invalid:focus,
+select#member:invalid:focus,
+select#product:invalid:focus {
+    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+}
