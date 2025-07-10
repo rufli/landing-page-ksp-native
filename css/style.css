@@ -12,7 +12,7 @@
     --accent-color: #e74c3c;
     --light-color: #ecf0f1;
     --dark-color: #2c3e50;
-    
+    --header-height: 70px;
 }
 
 body {
@@ -131,6 +131,8 @@ nav ul li a:hover {
     }
     
 }
+/*responsive header*/
+
 
 /* Hero Section */
 .hero {
@@ -379,6 +381,14 @@ nav ul li a:hover {
     align-items: center;
     justify-content: center;
 }
+@media (max-width: 400px) {
+    .testimonial {
+        padding: 1rem;
+    }
+    .testimonial-text {
+        font-size: 0.9rem;
+    }
+}
 
 .author-img {
     width: 60px;
@@ -424,17 +434,17 @@ nav ul li a:hover {
     background-color: var(--secondary-color);
 }
 
-/* Contact Section */
+/* ===== CONTACT SECTION ===== */
 .contact {
-    min-height: 100vh;
-    padding: 5rem 0;
+    padding: 3rem 0;
     background-color: #f5f7fa;
+    position: relative;
 }
 
 .contact-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 3rem;
+    gap: 2rem;
 }
 
 .contact-info h3 {
@@ -463,6 +473,7 @@ nav ul li a:hover {
 .social-links {
     display: flex;
     gap: 1rem;
+    flex-wrap: wrap;
 }
 
 .social-link {
@@ -479,6 +490,13 @@ nav ul li a:hover {
 
 .social-link:hover {
     background-color: var(--secondary-color);
+}
+
+.contact-form {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
 .contact-form .form-group {
@@ -516,50 +534,20 @@ nav ul li a:hover {
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.3s;
+    width: 100%;
 }
 
 .submit-btn:hover {
     background-color: #2980b9;
 }
-/*penyseuaian agar cukup 1 halaman */
-/* PERBAIKAN TAMBAHAN (Gabungkan dengan CSS di atas) */
-.contact-form {
-    max-height: 65vh;
-    overflow-y: auto;
-    padding-right: 8px;
-}
 
-.contact-form::-webkit-scrollbar {
-    width: 6px;
-}
-
-.contact-form::-webkit-scrollbar-thumb {
-    background: var(--secondary-color);
-    border-radius: 3px;
-}
-
-.submit-btn-container {
-    position: sticky;
-    bottom: 0;
-    background: #f5f7fa;
-    padding-top: 1rem;
-}
-
-.contact {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-}
-
-.contact-container {
-    max-height: 90vh;
-}
-
-/* Footer */
+/* ===== FOOTER ===== */
 footer {
     background-color: var(--primary-color);
     color: white;
     padding: 3rem 0 1rem;
+    position: relative;
+    z-index: 2;
 }
 
 .footer-container {
@@ -615,59 +603,37 @@ footer {
     font-size: 0.9rem;
 }
 
-/* Responsive Styles */
+/* ===== RESPONSIVE STYLES ===== */
 @media (max-width: 768px) {
-    .header-container {
-        flex-direction: column;
-        text-align: center;
+    .contact {
+        padding: 2rem 0;
     }
-
-    .logo {
-        margin-bottom: 1rem;
+    
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
-
-    nav ul {
-        flex-direction: column;
-        align-items: center;
+    
+    .contact-form {
+        padding: 1rem;
     }
-
-    nav ul li {
-        margin: 0.5rem 0;
-    }
-
-    .hero {
-        padding: 8rem 0 3rem;
-    }
-
-    .hero h2 {
-        font-size: 2rem;
-    }
-
-    .section-title h2 {
-        font-size: 1.8rem;
+    
+    .submit-btn {
+        padding: 0.8rem 1rem;
     }
 }
 
-@media (max-width: 576px) {
-    .mobile-menu-btn {
-        display: block;
+@media (max-width: 480px) {
+    .contact {
+        padding: 1.5rem 0;
     }
-
-    nav {
-        display: none;
-        width: 100%;
-        margin-top: 1rem;
+    
+    .contact-info h3,
+    .footer-col h3 {
+        font-size: 1.2rem;
     }
-
-    nav.active {
-        display: block;
-    }
-
-    .hero h2 {
-        font-size: 1.8rem;
-    }
-
-    .hero p {
-        font-size: 1rem;
+    
+    .footer-container {
+        grid-template-columns: 1fr;
     }
 }
