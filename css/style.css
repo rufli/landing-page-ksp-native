@@ -88,7 +88,7 @@ nav ul li a:hover {
     font-size: 1.5rem;
     cursor: pointer;
 }
-/* Tambahkan ini di bagian CSS Anda */
+
 
 @media (max-width: 768px) {
     .header-container {
@@ -128,6 +128,7 @@ nav ul li a:hover {
         padding-right: 50px; /* Memberi ruang untuk tombol menu */
         width: 100%;
     }
+    
 }
 
 /* Hero Section */
