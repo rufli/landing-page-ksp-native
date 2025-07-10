@@ -331,6 +331,7 @@
     line-height: 1.6;
 }
 /* css untuk select */
+
 /* Form Select Styling - untuk semua select */
 select#program,
 select#member,
@@ -410,14 +411,14 @@ select#product option:first-child {
 /* Required field indicator */
 .form-group label::after {
     content: ' *';
-    color: #e74c3c;
+    color: #2c3e50;
 }
 
 /* Error state */
 select#program:invalid,
 select#member:invalid,
 select#product:invalid {
-    border-color: #e74c3c;
+    border-color: #2c3e50;
 }
 
 select#program:invalid:focus,

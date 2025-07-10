@@ -12,6 +12,7 @@
     --accent-color: #e74c3c;
     --light-color: #ecf0f1;
     --dark-color: #2c3e50;
+    
 }
 
 body {
@@ -133,11 +134,15 @@ nav ul li a:hover {
 
 /* Hero Section */
 .hero {
-    position: relative;
-    color: white;
-    padding: 10rem 0 5rem;
-    text-align: center;
-    overflow: hidden;
+  position: relative;
+  color: white;
+  min-height: 100vh; /* Tambahkan ini */
+  padding: calc(var(--header-height) + 2rem) 0 5rem; /* Sesuaikan padding */
+  text-align: center;
+  overflow: hidden;
+  display: flex; /* Tambahkan */
+  align-items: center; /* Tambahkan */
+  justify-content: center; /* Tambahkan */
 }
 
 .hero-image-container {
@@ -196,6 +201,7 @@ nav ul li a:hover {
 }
 /* Features Section */
 .features {
+    min-height: 100vh;
     padding: 5rem 0;
     background-color: white;
 }
@@ -257,6 +263,7 @@ nav ul li a:hover {
 
 /* Services Section */
 .services {
+    min-height: 100vh;
     padding: 5rem 0;
     background-color: #f5f7fa;
 }
@@ -324,6 +331,7 @@ nav ul li a:hover {
 
 /* Testimonials */
 .testimonials {
+    min-height: 100vh;
     padding: 5rem 0;
     background-color: white;
 }
@@ -418,6 +426,7 @@ nav ul li a:hover {
 
 /* Contact Section */
 .contact {
+    min-height: 100vh;
     padding: 5rem 0;
     background-color: #f5f7fa;
 }
@@ -511,6 +520,39 @@ nav ul li a:hover {
 
 .submit-btn:hover {
     background-color: #2980b9;
+}
+/*penyseuaian agar cukup 1 halaman */
+/* PERBAIKAN TAMBAHAN (Gabungkan dengan CSS di atas) */
+.contact-form {
+    max-height: 65vh;
+    overflow-y: auto;
+    padding-right: 8px;
+}
+
+.contact-form::-webkit-scrollbar {
+    width: 6px;
+}
+
+.contact-form::-webkit-scrollbar-thumb {
+    background: var(--secondary-color);
+    border-radius: 3px;
+}
+
+.submit-btn-container {
+    position: sticky;
+    bottom: 0;
+    background: #f5f7fa;
+    padding-top: 1rem;
+}
+
+.contact {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.contact-container {
+    max-height: 90vh;
 }
 
 /* Footer */
