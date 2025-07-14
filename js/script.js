@@ -2,30 +2,52 @@
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const mainNav = document.getElementById('mainNav');
 
-mobileMenuBtn.addEventListener('click', () => {
-    mainNav.classList.toggle('active');
-});
+if (mobileMenuBtn && mainNav) {
+    mobileMenuBtn.addEventListener('click', () => {
+        mainNav.classList.toggle('active');
+    });
+}
 
-// Smooth Scrolling for Anchor Links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
+// Smooth Scrolling & Scrollspy
+const navLinks = document.querySelectorAll('nav ul li a');
+const sections = document.querySelectorAll('section[id]');
+
+navLinks.forEach(link => {
+    link.addEventListener('click', function (e) {
         e.preventDefault();
-        
         const targetId = this.getAttribute('href');
         const targetElement = document.querySelector(targetId);
-        
+
         if (targetElement) {
-            targetElement.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-            
-            // Close mobile menu if open
-            if (mainNav.classList.contains('active')) {
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if (mainNav?.classList.contains('active')) {
                 mainNav.classList.remove('active');
             }
         }
     });
+});
+
+window.addEventListener('scroll', () => {
+    const scrollPosition = window.scrollY + 150;
+
+    sections.forEach(section => {
+        const top = section.offsetTop;
+        const height = section.offsetHeight;
+        const id = section.getAttribute('id');
+
+        if (scrollPosition >= top && scrollPosition < top + height) {
+            navLinks.forEach(link => link.classList.remove('active'));
+            const activeLink = document.querySelector(`nav ul li a[href="#${id}"]`);
+            if (activeLink) activeLink.classList.add('active');
+        }
+    });
+
+    const header = document.querySelector('header');
+    if (window.scrollY > 100) {
+        header?.classList.add('scrolled');
+    } else {
+        header?.classList.remove('scrolled');
+    }
 });
 
 // Testimonial Slider
@@ -34,52 +56,31 @@ const dots = document.querySelectorAll('.slider-dot');
 let currentSlide = 0;
 
 function showSlide(index) {
-    testimonials.forEach(testimonial => testimonial.classList.remove('active'));
-    dots.forEach(dot => dot.classList.remove('active'));
-    
-    testimonials[index].classList.add('active');
-    dots[index].classList.add('active');
+    testimonials.forEach(t => t.classList.remove('active'));
+    dots.forEach(d => d.classList.remove('active'));
+    testimonials[index]?.classList.add('active');
+    dots[index]?.classList.add('active');
     currentSlide = index;
 }
 
 dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-        showSlide(index);
-    });
+    dot.addEventListener('click', () => showSlide(index));
 });
 
-// Auto slide change
-setInterval(() => {
-    currentSlide = (currentSlide + 1) % testimonials.length;
-    showSlide(currentSlide);
-}, 5000);
+if (testimonials.length > 0) {
+    setInterval(() => {
+        currentSlide = (currentSlide + 1) % testimonials.length;
+        showSlide(currentSlide);
+    }, 5000);
+}
 
-// Form Submission
+// Contact Form Submission
 const contactForm = document.getElementById('contactForm');
-    
-contactForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Get form values
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const phone = document.getElementById('phone').value;
-    const message = document.getElementById('message').value;
-    
-    // Here you would typically send the data to a server
-    // For this demo, we'll just show an alert
-    alert(`Terima kasih ${name}! Pesan Anda telah terkirim. Kami akan segera menghubungi Anda.`);
-    
-    // Reset form
-    contactForm.reset();
-});
-
-// Sticky Header on Scroll
-window.addEventListener('scroll', () => {
-    const header = document.querySelector('header');
-    if (window.scrollY > 100) {
-        header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
-    } else {
-        header.style.boxShadow = 'none';
-    }
-});
+if (contactForm) {
+    contactForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const name = this.querySelector('#name')?.value || '';
+        alert(`Terima kasih ${name}! Pesan Anda telah terkirim. Kami akan segera menghubungi Anda.`);
+        this.reset();
+    });
+}

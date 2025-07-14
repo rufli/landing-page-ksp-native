@@ -1,4 +1,4 @@
-/* Reset CSS */
+
 * {
     margin: 0;
     padding: 0;
@@ -80,6 +80,11 @@ nav ul li a:hover {
     color: var(--secondary-color);
 }
 
+nav ul li a.active {
+    color: var(--secondary-color);
+    font-weight: bold;
+    position: relative;
+}
 
 .mobile-menu-btn {
     display: none;
@@ -90,16 +95,16 @@ nav ul li a:hover {
     cursor: pointer;
 }
 
-
+/* Responsive header */
 @media (max-width: 768px) {
     .header-container {
         flex-direction: column;
-        align-items: flex-start; /* Ini yang mengatur ke kiri */
+        align-items: flex-start;
     }
 
     #mainNav {
         width: 100%;
-        display: none; /* Awalnya disembunyikan, akan ditoggle dengan JS */
+        display: none;
     }
 
     #mainNav.active {
@@ -126,25 +131,58 @@ nav ul li a:hover {
     }
 
     .logo {
-        padding-right: 50px; /* Memberi ruang untuk tombol menu */
+        padding-right: 50px;
         width: 100%;
     }
-    
 }
-/*responsive header*/
+
+/* Responsive header tambahan untuk layar sangat kecil */
+@media (max-width: 300px) {
+    .header-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .logo {
+        padding-right: 0;
+        justify-content: center;
+        text-align: center;
+        flex-wrap: wrap;
+    }
+
+    .logo h1 {
+        font-size: 1.1rem;
+    }
+
+    .logo img {
+        height: 30px;
+        margin-right: 5px;
+    }
+
+    .mobile-menu-btn {
+        right: 0.5rem;
+        top: 0.5rem;
+    }
+
+    .container {
+        width: 95%;
+    }
+}
+
 
 
 /* Hero Section */
+
 .hero {
-  position: relative;
-  color: white;
-  min-height: 100vh; /* Tambahkan ini */
-  padding: calc(var(--header-height) + 2rem) 0 5rem; /* Sesuaikan padding */
-  text-align: center;
-  overflow: hidden;
-  display: flex; /* Tambahkan */
-  align-items: center; /* Tambahkan */
-  justify-content: center; /* Tambahkan */
+    position: relative;
+    color: white;
+    min-height: 100vh;
+    padding: clamp(3rem, 10vh, 5rem) 1rem 2rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
 
 .hero-image-container {
@@ -160,6 +198,7 @@ nav ul li a:hover {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
 }
 
 .hero-overlay {
@@ -174,33 +213,112 @@ nav ul li a:hover {
 .hero-content {
     position: relative;
     z-index: 1;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 clamp(0.5rem, 3vw, 2rem);
 }
 
 .hero h2 {
-    font-size: 2.5rem;
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
     margin-bottom: 1rem;
+    line-height: 1.3;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .hero p {
-    font-size: 1.2rem;
-    max-width: 700px;
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    max-width: min(700px, 90%);
     margin: 0 auto 2rem;
+    line-height: 1.6;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .cta-button {
     display: inline-block;
     background-color: var(--secondary-color);
     color: white;
-    padding: 0.8rem 2rem;
+    padding: 0.8rem clamp(1.5rem, 4vw, 2rem);
     border-radius: 5px;
     text-decoration: none;
     font-weight: 600;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
+    min-width: 150px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .cta-button:hover {
     background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
+
+/* Responsive Hero */
+@media (max-width: 768px) {
+    .hero {
+        min-height: 80vh;
+        padding-top: calc(var(--header-height) + 1rem);
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h2 {
+        font-size: clamp(1.5rem, 6vw, 1.8rem);
+    }
+
+    .hero p {
+        font-size: clamp(0.9rem, 3.5vw, 1rem);
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media (max-width: 300px) {
+    .hero {
+        padding: 1rem 0.5rem;
+        min-height: 70vh;
+    }
+
+    .hero-content {
+        padding: 0 0.3rem;
+    }
+
+    .hero h2 {
+        font-size: 1.3rem;
+        line-height: 1.2;
+    }
+
+    .hero p {
+        font-size: 0.85rem;
+    }
+
+    .cta-button {
+        min-width: 120px;
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Tambahan: Antisipasi Layar Sangat Kecil */
+@media (max-width: 240px) {
+    .hero h2 {
+        font-size: 1.1rem;
+    }
+
+    .hero p {
+        font-size: 0.75rem;
+    }
+
+    .cta-button {
+        min-width: auto;
+        width: 100%;
+        padding: 0.5rem;
+        font-size: 0.8rem;
+    }
+}
+
+
+/* Features Section */
 /* Features Section */
 .features {
     min-height: 100vh;
@@ -234,7 +352,7 @@ nav ul li a:hover {
 
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
 }
 
@@ -263,6 +381,103 @@ nav ul li a:hover {
     color: var(--primary-color);
 }
 
+/* Responsive Settings */
+@media (max-width: 1024px) {
+    .features-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .features {
+        padding: 3rem 1rem;
+    }
+
+    .section-title h2 {
+        font-size: 1.8rem;
+    }
+
+    .feature-icon {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .feature-card {
+        padding: 1.5rem;
+    }
+
+    .feature-card h3 {
+        font-size: 1.2rem;
+    }
+
+    .section-title h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Tambahan untuk ≤300px */
+@media (max-width: 300px) {
+    .features {
+        padding: 2rem 0.5rem;
+    }
+
+    .section-title h2 {
+        font-size: 1.3rem;
+        padding-bottom: 8px;
+    }
+
+    .section-title h2::after {
+        width: 50px;
+    }
+
+    .feature-card {
+        padding: 1rem;
+    }
+
+    .feature-icon {
+        font-size: 2rem;
+    }
+
+    .feature-card h3 {
+        font-size: 1rem;
+    }
+
+    .feature-card p {
+        font-size: 0.85rem;
+        line-height: 1.4;
+    }
+}
+
+/* Tambahan untuk ≤240px */
+@media (max-width: 240px) {
+    .features {
+        padding: 1rem 0.3rem;
+    }
+
+    .feature-card {
+        padding: 0.8rem;
+    }
+
+    .feature-icon {
+        font-size: 1.8rem;
+    }
+
+    .feature-card h3 {
+        font-size: 0.9rem;
+    }
+
+    .feature-card p {
+        font-size: 0.75rem;
+    }
+}
+
+
+/* Services Section */
 /* Services Section */
 .services {
     min-height: 100vh;
@@ -331,6 +546,113 @@ nav ul li a:hover {
     color: var(--primary-color);
 }
 
+/* Responsive Settings */
+@media (max-width: 1024px) {
+    .services {
+        padding: 4rem 2rem;
+    }
+    .services-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .services {
+        padding: 3rem 1.5rem;
+    }
+    .services-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+    .service-img {
+        height: 180px;
+    }
+    .service-content h3 {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .services {
+        padding: 2rem 1rem;
+    }
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    .service-img {
+        height: 150px;
+    }
+    .service-content {
+        padding: 1rem;
+    }
+    .service-content h3 {
+        font-size: 1.1rem;
+    }
+    .service-content p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Tambahan untuk layar kecil ≤ 300px */
+@media (max-width: 300px) {
+    .services {
+        padding: 1.5rem 0.5rem;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .service-card {
+        border-radius: 6px;
+    }
+
+    .service-img {
+        height: 130px;
+    }
+
+    .service-content {
+        padding: 0.8rem;
+    }
+
+    .service-content h3 {
+        font-size: 1rem;
+    }
+
+    .service-content p {
+        font-size: 0.85rem;
+    }
+
+    .learn-more {
+        font-size: 0.85rem;
+    }
+}
+
+/* Tambahan untuk layar sangat kecil ≤ 240px */
+@media (max-width: 240px) {
+    .services {
+        padding: 1rem 0.3rem;
+    }
+
+    .service-img {
+        height: 100px;
+    }
+
+    .service-content h3 {
+        font-size: 0.9rem;
+    }
+
+    .service-content p {
+        font-size: 0.75rem;
+    }
+
+    .learn-more {
+        font-size: 0.75rem;
+    }
+}
+
+
+/* Testimonials */
 /* Testimonials */
 .testimonials {
     min-height: 100vh;
@@ -342,6 +664,7 @@ nav ul li a:hover {
     max-width: 800px;
     margin: 0 auto;
     position: relative;
+    padding: 0 1rem;
 }
 
 .testimonial {
@@ -380,14 +703,7 @@ nav ul li a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-@media (max-width: 400px) {
-    .testimonial {
-        padding: 1rem;
-    }
-    .testimonial-text {
-        font-size: 0.9rem;
-    }
+    flex-wrap: wrap;
 }
 
 .author-img {
@@ -434,17 +750,107 @@ nav ul li a:hover {
     background-color: var(--secondary-color);
 }
 
+/* Responsive Settings */
+@media (max-width: 768px) {
+    .testimonial {
+        padding: 1.5rem;
+    }
+    .testimonial-text {
+        font-size: 1rem;
+    }
+    .author-img {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 0.5rem;
+    }
+    .testimonial-author {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .testimonial-slider {
+        padding: 0;
+    }
+    .testimonial {
+        padding: 1rem;
+    }
+    .testimonial-text {
+        font-size: 0.95rem;
+    }
+    .author-info h4 {
+        font-size: 1rem;
+    }
+    .author-info p {
+        font-size: 0.85rem;
+    }
+}
+
+/* Tambahan untuk layar kecil ≤ 300px */
+@media (max-width: 300px) {
+    .testimonial {
+        padding: 0.8rem;
+    }
+    .testimonial-text {
+        font-size: 0.9rem;
+    }
+    .author-img {
+        width: 45px;
+        height: 45px;
+    }
+    .author-info h4 {
+        font-size: 0.95rem;
+    }
+    .author-info p {
+        font-size: 0.8rem;
+    }
+    .slider-dot {
+        width: 10px;
+        height: 10px;
+        margin: 0 3px;
+    }
+}
+
+/* Tambahan untuk layar sangat kecil ≤ 240px */
+@media (max-width: 240px) {
+    .testimonial {
+        padding: 0.6rem;
+    }
+    .testimonial-text {
+        font-size: 0.85rem;
+    }
+    .author-img {
+        width: 40px;
+        height: 40px;
+        margin-right: 0.5rem;
+    }
+    .author-info h4 {
+        font-size: 0.85rem;
+    }
+    .author-info p {
+        font-size: 0.75rem;
+    }
+    .slider-dot {
+        width: 8px;
+        height: 8px;
+    }
+}
+
+
 /* ===== CONTACT SECTION ===== */
+
 .contact {
-    padding: 3rem 0;
-    background-color: #f5f7fa;
-    position: relative;
+    min-height: 100vh;
+    padding: 5rem 0;
+    background-color: rgb(245, 247, 250);
 }
 
 .contact-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
+    width: 100%;
 }
 
 .contact-info h3 {
@@ -496,7 +902,15 @@ nav ul li a:hover {
     background: white;
     padding: 1.5rem;
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    height: fit-content;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
 }
 
 .contact-form .form-group {
@@ -508,29 +922,43 @@ nav ul li a:hover {
     margin-bottom: 0.5rem;
     font-weight: 600;
     color: var(--primary-color);
+    font-size: 0.9rem;
 }
 
 .contact-form input,
 .contact-form textarea {
     width: 100%;
-    padding: 0.8rem;
+    padding: 0.6rem;
     border: 1px solid #ddd;
     border-radius: 5px;
-    font-size: 1rem;
+    font-size: 0.9rem;
+    transition: border-color 0.3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--secondary-color);
 }
 
 .contact-form textarea {
-    height: 150px;
+    height: 80px;
     resize: vertical;
+    min-height: 60px;
+    max-height: 120px;
+}
+
+.submit-btn-container {
+    margin-top: 1rem;
 }
 
 .submit-btn {
     background-color: var(--secondary-color);
     color: white;
     border: none;
-    padding: 0.8rem 2rem;
+    padding: 0.7rem 2rem;
     border-radius: 5px;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.3s;
@@ -541,20 +969,151 @@ nav ul li a:hover {
     background-color: #2980b9;
 }
 
+/* ============ RESPONSIVE SETTINGS ============ */
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+
+    .contact-form {
+        padding: 1rem;
+    }
+
+    .contact-form textarea {
+        height: 70px;
+    }
+
+    .contact-form .form-group {
+        margin-bottom: 0.8rem;
+    }
+
+    .container {
+        padding: 0 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-form {
+        padding: 0.8rem;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        padding: 0.5rem;
+        font-size: 0.85rem;
+    }
+
+    .contact-form textarea {
+        height: 60px;
+    }
+
+    .submit-btn {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.85rem;
+    }
+
+    .contact-info h3 {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .contact-form input,
+    .contact-form textarea {
+        font-size: 0.8rem;
+    }
+
+    .contact-info h3 {
+        font-size: 1.2rem;
+    }
+}
+/* Tambahan Responsive Contact Section */
+
+@media (max-width: 320px) {
+    .contact-form {
+        padding: 0.6rem;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        padding: 0.4rem;
+        font-size: 0.75rem;
+    }
+
+    .contact-form textarea {
+        height: 50px;
+        min-height: 40px;
+    }
+
+    .submit-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+    }
+
+    .contact-info h3 {
+        font-size: 1.1rem;
+    }
+
+    .contact-item p {
+        font-size: 0.8rem;
+    }
+
+    .social-link {
+        width: 35px;
+        height: 35px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 240px) {
+    .contact-form {
+        padding: 0.5rem;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        padding: 0.35rem;
+        font-size: 0.7rem;
+    }
+
+    .submit-btn {
+        padding: 0.4rem;
+        font-size: 0.7rem;
+    }
+
+    .contact-info h3 {
+        font-size: 1rem;
+    }
+
+    .social-link {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+
 /* ===== FOOTER ===== */
 footer {
     background-color: var(--primary-color);
     color: white;
     padding: 3rem 0 1rem;
-    position: relative;
-    z-index: 2;
+    width: 100%;
 }
 
 .footer-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 2rem;
-    margin-bottom: 2rem;
+    max-width: 1200px;
+    margin: 0 auto 2rem auto;
+    padding: 0 1rem;
 }
 
 .footer-col h3 {
@@ -576,10 +1135,12 @@ footer {
 
 .footer-col p {
     margin-bottom: 1rem;
+    line-height: 1.6;
 }
 
 .footer-links {
     list-style: none;
+    padding: 0;
 }
 
 .footer-links li {
@@ -587,53 +1148,113 @@ footer {
 }
 
 .footer-links a {
-    color: #ddd;
+    color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
-    transition: color 0.3s;
+    transition: all 0.3s ease;
+    position: relative;
 }
 
 .footer-links a:hover {
     color: var(--secondary-color);
+    transform: translateX(5px);
+}
+
+.footer-links a::before {
+    content: '▸';
+    position: absolute;
+    left: -15px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.footer-links a:hover::before {
+    opacity: 1;
 }
 
 .copyright {
     text-align: center;
-    padding-top: 2rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem 1rem 0;
     font-size: 0.9rem;
 }
 
-/* ===== RESPONSIVE STYLES ===== */
+
+/* ===== RESPONSIVE FOOTER ===== */
 @media (max-width: 768px) {
-    .contact {
-        padding: 2rem 0;
+    footer {
+        padding: 2rem 0 1rem;
     }
-    
-    .contact-container {
+    .footer-container {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
+        padding: 0 1.5rem;
     }
-    
-    .contact-form {
-        padding: 1rem;
+    .footer-col h3 {
+        font-size: 1.2rem;
     }
-    
-    .submit-btn {
-        padding: 0.8rem 1rem;
+    .footer-links a {
+        font-size: 0.9rem;
     }
 }
 
 @media (max-width: 480px) {
-    .contact {
-        padding: 1.5rem 0;
-    }
-    
-    .contact-info h3,
-    .footer-col h3 {
-        font-size: 1.2rem;
-    }
-    
     .footer-container {
-        grid-template-columns: 1fr;
+        padding: 0 1rem;
+        gap: 1rem;
+    }
+    .footer-col h3 {
+        font-size: 1.1rem;
+    }
+    .footer-col h3::after {
+        width: 40px;
+    }
+    .footer-col p {
+        font-size: 0.85rem;
+    }
+    .footer-links a {
+        font-size: 0.85rem;
+    }
+    copyright {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 300px) {
+    .footer-container {
+        padding: 0 0.5rem;
+        gap: 0.8rem;
+    }
+    .footer-col h3 {
+        font-size: 1rem;
+    }
+    .footer-col p {
+        font-size: 0.8rem;
+    }
+    .footer-links a {
+        font-size: 0.8rem;
+    }
+    .footer-links a::before {
+        left: -10px;
+    }
+    copyright {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 240px) {
+    .footer-container {
+        padding: 0 0.2rem;
+    }
+    .footer-col h3 {
+        font-size: 0.9rem;
+    }
+    .footer-col p,
+    .footer-links a {
+        font-size: 0.75rem;
+    }
+    .footer-links a::before {
+        display: none;
+    }
+    copyright {
+        font-size: 0.65rem;
     }
 }
