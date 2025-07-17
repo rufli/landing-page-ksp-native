@@ -11,17 +11,17 @@ if (mobileMenuBtn && mainNav) {
 // Set Active Navigation Link Based on Current Page
 function setActiveNavLink() {
     const navLinks = document.querySelectorAll('nav ul li a');
-    const currentPath = window.location.pathname;
+    const currentPath = window.location.pathname.split('/').pop(); // Ambil nama file saja
     
     navLinks.forEach(link => link.classList.remove('active'));
     
     navLinks.forEach(link => {
         const href = link.getAttribute('href');
+        const hrefFile = href.split('/').pop(); // Ambil nama file dari href
         
-        if (href === currentPath || 
-            (currentPath === '/' && href === '/') ||
-            (currentPath === '/index.html' && href === '/') ||
-            (currentPath === '/' && href === '/index.html')) {
+        if (hrefFile === currentPath || 
+            (currentPath === '' && (hrefFile === 'index.html' || hrefFile === '')) ||
+            (currentPath === 'index.html' && (hrefFile === 'index.html' || hrefFile === ''))) {
             link.classList.add('active');
         }
     });

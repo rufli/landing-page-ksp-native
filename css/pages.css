@@ -1,4 +1,4 @@
-/* General Page Styles */
+/*  Page  */
 .page-hero {
     background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8));
     color: white;
@@ -22,7 +22,7 @@
     background-color: white;
 }
 
-/* Product Detail Styles */
+/* Product Detail  */
 .product-detail {
     max-width: 1000px;
     margin: 0 auto;
@@ -93,7 +93,7 @@
     left: 0;
 }
 
-/* How It Works */
+/* How  */
 .how-it-works {
     margin: 3rem 0;
 }
@@ -356,7 +356,7 @@ select#product:invalid:focus {
     box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
 }
 
-/* Responsive Styles */
+/* ini untuk responsive */
 @media (max-width: 768px) {
     .page-hero {
         padding: 7rem 0 3rem;
